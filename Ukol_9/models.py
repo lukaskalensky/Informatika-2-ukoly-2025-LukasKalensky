@@ -4,10 +4,20 @@ class Product:
     """
     def __init__(self, name: str, price: float, quantity: int):
         # TODO: Inicializace, využití properties pro validaci
-        self._name = name
+        self.name = name
         self.price = price
         self.quantity = quantity
 
+    @property
+    def name(self) -> float:
+        return self._name
+
+    @name.setter
+    def name(self, value: int):
+        if value is not "":
+            self._name = value
+        else:
+            raise ValueError()
     @property
     def price(self) -> float:
         return self._price
@@ -15,16 +25,21 @@ class Product:
     @price.setter
     def price(self, value: float):
         # TODO: Validace, raise ValueError pokud < 0
-        self._price = value
-
+        if value >= 0:
+            self._price = value
+        else:
+            raise ValueError()
+        
     @property
     def quantity(self) -> int:
         return self._quantity
 
     @quantity.setter
     def quantity(self, value: int):
-        # TODO: Validace
-        self._quantity = value
+        if value >= 0:
+            self._quantity = value
+        else:
+            raise ValueError()
 
     def to_dict(self) -> dict:
         """Vrátí slovníkovou reprezentaci pro JSON."""
